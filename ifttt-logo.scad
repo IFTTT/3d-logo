@@ -18,14 +18,14 @@ module logo(width) {
 }
 
 // the logo
-width = 100;
+width = 50;
 logo(width);
 
 // connective bar
 bar=width/20;
-translate([-width/2, (width*IFTTT_H/IFTTT_W-bar*1.7)/2, width*IFTTT_H/IFTTT_W/2])
+translate([-width/2+1, (width*IFTTT_H/IFTTT_W-bar*1.7)/2, width*IFTTT_H/IFTTT_W/2])
 rotate([0,90,0])
-cylinder(h=width, d=bar);
+cylinder(h=width-1, d=bar);
 
 // hanging loop
 translate([0,  (width*IFTTT_H/IFTTT_W-bar)/2, width*IFTTT_H/IFTTT_W/2])
