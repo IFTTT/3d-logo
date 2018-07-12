@@ -1,5 +1,9 @@
 // IFTTT Logo
 // dimensionless
+//
+// Used as a library to include the logo in other parts.
+//
+
 $fs = 0.1; // mm per facet in cylinder
 $fa = 5; // degrees per facet in cylinder
 $fn = 100;
@@ -19,17 +23,30 @@ module logo(width) {
 
 // the logo
 width = 50;
-logo(width);
 
-// connective bar
 bar=width/20;
-translate([-width/2+1, (width*IFTTT_H/IFTTT_W-bar*1.7)/2, width*IFTTT_H/IFTTT_W/2])
-rotate([0,90,0])
-cylinder(h=width-1, d=bar);
+// connective bar
+module connective_bar() {
+    translate([-width/2+1, (width*IFTTT_H/IFTTT_W-bar*1.7)/2, width*IFTTT_H/IFTTT_W/2])
+    rotate([0,90,0])
+    cylinder(h=width-1, d=bar);
+}
 
 // hanging loop
-translate([0,  (width*IFTTT_H/IFTTT_W-bar)/2, width*IFTTT_H/IFTTT_W/2])
-rotate([0,90,0])
-rotate_extrude(angle=180, convexity = 10)
-translate([bar, 0, 0])
-circle(r = bar/4, $fn = 100);
+module hanging_loop() {
+    translate([0,  (width*IFTTT_H/IFTTT_W-bar)/2, width*IFTTT_H/IFTTT_W/2])
+    rotate([0,90,0])
+    rotate_extrude(angle=180, convexity = 10)
+    translate([bar, 0, 0])
+    circle(r = bar/4, $fn = 100);
+}
+
+//assemble an ornament
+module ornament() {
+    connective_bar();
+    hanging_loop();
+    logo(width);
+}
+//ornament();
+
+

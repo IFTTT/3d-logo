@@ -104,6 +104,7 @@ module LOWER_LEFT() {
     }
 }
 module LOWER() {
+    
 //    hull() {
         LOWER_LEFT();
         mirror(v= [0,1,0] ) LOWER_LEFT();
@@ -129,7 +130,13 @@ module LOWER() {
 
 module PART() {
     difference() {
-        translate([0,0,-MBP_DEPTH/2]) LOWER();
+        translate([0,0,-MBP_DEPTH/2]) union(){
+            LOWER();
+    translate([27,0,15])
+    rotate([90,0,90])
+    logo(70);
+            
+        }
 
         //WIRES();
 
@@ -152,9 +159,7 @@ module PART() {
         translate([0,0,-MBP_DEPTH/2-7])
         rotate([0,90,0])
         cylinder(d = WIRE_JUNCTION_DIA, h=THUNDERBOLT_HEIGHT);
-
     }
-    
 }
 
 module sides() {
